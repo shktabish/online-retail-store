@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2'
 import {
@@ -16,6 +16,8 @@ import {
   Legend,
 } from 'chart.js'
 import { DollarSign, ShoppingCart, Users, TrendingUp } from 'lucide-react'
+import { useRouter } from 'next/router'
+import { UserButton } from '@clerk/nextjs'
 
 ChartJS.register(
   CategoryScale,
@@ -138,104 +140,106 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">E-commerce Dashboard</h1>
+    <iframe src="https://akhil-vaidya-docgpt-prod.hf.space/home" className="w-full h-screen relative">
+    </iframe>
+    // <div className="container mx-auto p-4">
+    //   <h1 className="text-2xl font-bold mb-4">E-commerce Dashboard</h1>
       
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">Rs.45,231.89</div>
-            <p className="text-xs text-muted-foreground">+20.1% from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Gross Profit</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">Rs.15,231.89</div>
-            <p className="text-xs text-muted-foreground">+15.2% from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
-            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">+2350</div>
-            <p className="text-xs text-muted-foreground">+180.1% from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">New Customers</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">+12,234</div>
-            <p className="text-xs text-muted-foreground">+19% from last month</p>
-          </CardContent>
-        </Card>
-      </div>
+    //   {/* Summary Cards */}
+    //   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    //         <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
+    //         <DollarSign className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">Rs.45,231.89</div>
+    //         <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    //         <CardTitle className="text-sm font-medium">Gross Profit</CardTitle>
+    //         <TrendingUp className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">Rs.15,231.89</div>
+    //         <p className="text-xs text-muted-foreground">+15.2% from last month</p>
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    //         <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+    //         <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">+2350</div>
+    //         <p className="text-xs text-muted-foreground">+180.1% from last month</p>
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    //         <CardTitle className="text-sm font-medium">New Customers</CardTitle>
+    //         <Users className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">+12,234</div>
+    //         <p className="text-xs text-muted-foreground">+19% from last month</p>
+    //       </CardContent>
+    //     </Card>
+    //   </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Monthly Sales</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Bar data={monthlySalesData} options={{ responsive: true }} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Top Selling Products</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Bar data={topSellingProductsData} options={{ responsive: true, indexAxis: 'y' }} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Customer Acquisition</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Line data={customerAcquisitionData} options={{ responsive: true }} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Order Status Distribution</CardTitle>
-          </CardHeader>
-          <CardContent className="h-[200px]">
-            <Pie data={orderStatusData} options={pieChartOptions} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Revenue by Category</CardTitle>
-          </CardHeader>
-          <CardContent className="h-[200px]">
-            <Doughnut data={revenueByCategoryData} options={pieChartOptions} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Average Order Value Trend</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Line data={avgOrderValueData} options={{ responsive: true }} />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    //   {/* Charts */}
+    //   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Monthly Sales</CardTitle>
+    //       </CardHeader>
+    //       <CardContent>
+    //         <Bar data={monthlySalesData} options={{ responsive: true }} />
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Top Selling Products</CardTitle>
+    //       </CardHeader>
+    //       <CardContent>
+    //         <Bar data={topSellingProductsData} options={{ responsive: true, indexAxis: 'y' }} />
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Customer Acquisition</CardTitle>
+    //       </CardHeader>
+    //       <CardContent>
+    //         <Line data={customerAcquisitionData} options={{ responsive: true }} />
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Order Status Distribution</CardTitle>
+    //       </CardHeader>
+    //       <CardContent className="h-[200px]">
+    //         <Pie data={orderStatusData} options={pieChartOptions} />
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Revenue by Category</CardTitle>
+    //       </CardHeader>
+    //       <CardContent className="h-[200px]">
+    //         <Doughnut data={revenueByCategoryData} options={pieChartOptions} />
+    //       </CardContent>
+    //     </Card>
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Average Order Value Trend</CardTitle>
+    //       </CardHeader>
+    //       <CardContent>
+    //         <Line data={avgOrderValueData} options={{ responsive: true }} />
+    //       </CardContent>
+    //     </Card>
+    //   </div>
+    // </div>
   )
 }
