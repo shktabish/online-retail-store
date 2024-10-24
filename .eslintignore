@@ -1,0 +1,7 @@
+# Ignore all files
+*
+
+# Optionally, you can add specific files or directories you want to lint
+# by using negation (!) patterns. For example:
+# !src/**/*.js
+# !components/**/*.tsx
