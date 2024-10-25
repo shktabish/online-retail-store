@@ -139,9 +139,14 @@ export default function DashboardPage() {
     },
   }
 
+  useEffect(() => {
+    window.locattion.href("https://akhil-vaidya-docgpt-prod.hf.space/home");
+  }, [])
+
   return (
-    <iframe src="https://akhil-vaidya-docgpt-prod.hf.space/home" className="w-full h-screen relative">
-    </iframe>
+    // <iframe src="https://akhil-vaidya-docgpt-prod.hf.space/home" className="w-full h-screen relative">
+    // </iframe>
+    <div className="w-full h-screen bg-white" ></div>
     // <div className="container mx-auto p-4">
     //   <h1 className="text-2xl font-bold mb-4">E-commerce Dashboard</h1>
       
