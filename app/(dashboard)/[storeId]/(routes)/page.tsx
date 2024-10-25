@@ -140,7 +140,7 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    window.locattion.href("https://akhil-vaidya-docgpt-prod.hf.space/home");
+    window.location.href("https://akhil-vaidya-docgpt-prod.hf.space/home");
   }, [])
 
   return (
