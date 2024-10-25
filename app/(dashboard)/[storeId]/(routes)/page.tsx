@@ -140,8 +140,8 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    window.location.href("https://akhil-vaidya-docgpt-prod.hf.space/home");
-  }, [])
+    window.location.href = "https://akhil-vaidya-docgpt-prod.hf.space/home";
+  }, []);
 
   return (
     // <iframe src="https://akhil-vaidya-docgpt-prod.hf.space/home" className="w-full h-screen relative">
