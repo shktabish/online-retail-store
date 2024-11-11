@@ -146,7 +146,7 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">E-commerce Dashboard</h1>
-      <div>Heyyyaa</div>
+      <div>Heyyyaa did someting</div>
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Card>
